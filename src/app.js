@@ -23,15 +23,19 @@ app.use(cors({
 
 app.use(cookieParser())
 
-
-
 // routes import
 
 import userRouter from './routes/user.routes.js'
+import enquiryRouter from './routes/enquiry.routes.js'
+import topperRouter from './routes/topper.routes.js'
+import facultyRouter from './routes/faculty.routes.js'
 
 
 // routes decleration
 
 app.use("/api/v1/users" ,userRouter)
+app.use("/api/v1/enquiries",enquiryRouter)
+app.use("/api/v1/toppers",topperRouter)
+app.use("/api/v1/faculty",facultyRouter)
 
 export {app};

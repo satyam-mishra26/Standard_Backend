@@ -281,32 +281,32 @@ const updateAvatar = asyncHandler (async(req,res)=>{
 
 })
 
-const updateCoverImage = asyncHandler (async(req,res)=>{
-    const coverImageLocalPath = req.file?.path;
-    if(!coverImageLocalPath){
-        throw new ApiError(400,"Please Provide coverImage")
-    }
-    const coverImage= await uploadOnCloudinary(coverImageLocalPath);
+// const updateCoverImage = asyncHandler (async(req,res)=>{
+//     const coverImageLocalPath = req.file?.path;
+//     if(!coverImageLocalPath){
+//         throw new ApiError(400,"Please Provide coverImage")
+//     }
+//     const coverImage= await uploadOnCloudinary(coverImageLocalPath);
 
-    if(!coverImage.url){
-        throw new ApiError(400,"coverImage Upload Failed")
-    }
+//     if(!coverImage.url){
+//         throw new ApiError(400,"coverImage Upload Failed")
+//     }
 
-    await User.findByIdAndUpdate(
-        req.user?.id,
-        {
-            $set:{
-                coverImage:coverImage.url
-            }
-        },
-        {new:true}
-    ).select("-password")
+//     await User.findByIdAndUpdate(
+//         req.user?.id,
+//         {
+//             $set:{
+//                 coverImage:coverImage.url
+//             }
+//         },
+//         {new:true}
+//     ).select("-password")
 
-    return res
-    .status(200)
-    .json(new ApiResponse(200,"coverImage Updated Successfully !!!",coverImage))
+//     return res
+//     .status(200)
+//     .json(new ApiResponse(200,"coverImage Updated Successfully !!!",coverImage))
 
-})
+// })
 
 
-export {registerUser,loginUser,logOutUser,refreshAccessToken,changePassword,getCurrentUser,updateUser,updateAvatar,updateCoverImage}
+export {registerUser,loginUser,logOutUser,refreshAccessToken,changePassword,getCurrentUser,updateUser,updateAvatar}
